@@ -1,0 +1,1 @@
+See AGENTS.md in the project root for all coding instructions and conventions.

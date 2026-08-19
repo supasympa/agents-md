@@ -22,3 +22,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Local overrides (never commit these)
+CLAUDE.local.md
+AGENTS.override.md
