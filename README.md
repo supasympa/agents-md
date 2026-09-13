@@ -6,12 +6,17 @@ My personal [AGENTS.md](https://agents.md/) — a coding philosophy file that wo
 
 A single `AGENTS.md` file that translates my coding principles into instructions an AI agent can actually follow:
 
+- **Verification Protocol** — exact commands to run before declaring a task done (test, typecheck, lint, build). Trust but verify.
+- **Agent Behaviour** — when to ask for help, when to stop, small steps, spec before code, bounded scope.
 - **Ports & Adapters** — default architecture. Domain has zero external imports. Every side effect goes through a port.
 - **FP over OOP** — pure functions, immutable data, composition over inheritance, Result types instead of exceptions.
 - **SOLID (always SRP)** — every module has one reason to change. No exceptions.
 - **Clean Code** — functions under 25 lines, files under 250, intention-revealing names, no dead code, no speculative abstractions.
 - **Twelve Factor** — config in env vars, stateless processes, logs to stdout, dev/prod parity.
-- **XP** — test-first, refactor after green, small commits, small PRs.
+- **XP Practices** — test-first, refactor after green, root-cause every bug (Five Whys), small commits, small PRs, incremental design, pair on hard things.
+- **Security** — never commit secrets, validate inputs, review dependencies, prevent XSS and SQL injection.
+- **Known Pitfalls** — recurring mistakes accumulated over time. Add to this section when you learn something new.
+- **Living Document** — update the file when you learn something new. Rules, not philosophy. Every line actionable and verifiable.
 
 ## Works everywhere
 
