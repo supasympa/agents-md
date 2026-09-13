@@ -4,14 +4,24 @@ How I want you to write code. Read this before writing anything.
 
 ---
 
+## Talking to Me
+
+- **Brief, and in simple terms.** Short answer, plain words. That's the default for every response, not just the last one.
+- **Elaborate only when I ask.** Detailed technical language, full reasoning, alternatives, background, a walkthrough of what you did — I'll ask when I want them.
+- **Answer the question, then stop.** No preamble, no recap, no summary of a summary.
+
+---
+
 ## Verification Protocol
 
-Before declaring a task done, run these in order. Fix all failures before proceeding to the next step:
+Before declaring a task done, run the project's own checks in this order. Fix all failures before proceeding to the next step:
 
-1. `bun test` — all tests pass
-2. `tsc --noEmit` — no type errors
-3. `bun run lint` — no lint errors
-4. `bun run build` — production build succeeds
+1. **Tests** — the whole suite passes.
+2. **Types** — no type errors, where the language has a type checker.
+3. **Lint and format** — clean.
+4. **Build** — a production build succeeds, where the project produces one.
+
+**Find the real commands in the project, don't assume them.** Its `AGENTS.md`, its README, its package scripts, its CI config. A gate the project doesn't have is skipped; a gate it has and you didn't run is not done.
 
 Never skip a step. Never mark a task complete with failing checks. If a check doesn't exist yet, create it. Trust but verify — agent-generated code is not correct by default. Tests prove it.
 
@@ -121,9 +131,13 @@ Apply all five, but **Single Responsibility is non-negotiable**.
 
 ## Runtime & Tools
 
-- **Bun over Node.** `bun` not `node`, `bun test` not `jest`, `Bun.serve()` not `express`, `bun:sqlite` not `better-sqlite3`.
-- **TypeScript strict mode.** No `any` without a comment explaining why. No `@ts-ignore` without a comment.
-- **ESM.** Generate ESM-compatible TypeScript. No CommonJS.
+- **Follow the project's existing choices.** Runtime, package manager, test runner, build tool — the repository has already decided. Don't introduce a second one alongside it.
+- **Prefer the platform to a package.** If the runtime, its standard library, or the language itself ships the capability, use that rather than a dependency.
+- **One toolchain over four.** A single tool that runs, tests, and builds beats four that disagree about configuration.
+- **Strict typing, escape hatches justified.** Turn strictness on where the language offers it. No `any`, `@ts-ignore`, or equivalent without a comment saying why.
+- **Modern module syntax.** ESM in JavaScript and TypeScript. No CommonJS in new code.
+
+Where nothing has been decided yet, my defaults are Bun, TypeScript in strict mode, and ESM.
 
 ---
 
