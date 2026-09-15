@@ -90,10 +90,39 @@ Apply all five, but **Single Responsibility is non-negotiable**.
 - **Files under 250 lines.** If longer, it's doing too much.
 - **React components under 100 lines.** Extract hooks and sub-components.
 - **Intention-revealing names.** No `data`, `info`, `mgr`, `handler`, `util`, `helper`, `misc`.
-- **No comments that repeat the code.** Comments say why — decisions, constraints, trade-offs.
+- **Comments are a liability.** Default to none. See Comments below.
 - **No dead code.** If it's not called, delete it. Version control remembers everything.
 - **No speculative abstractions.** No interfaces with one implementation. No factories for a single use case. Add abstraction when you have three concrete examples, not before.
 - **No unnecessary dependencies.** If the standard library or ten lines of code can do it, don't install a package.
+
+---
+
+## Comments
+
+Comments are a liability. They rot, they get read instead of the code, and they cost attention. Default to none.
+
+- **If code needs a comment to explain what it does, fix the code.** Rename, extract, restructure. The name is the documentation.
+- **Comments say why, never what.** Write one only when the code cannot carry it: a constraint, a trade-off, a non-obvious invariant, a workaround for a known bug (with a link).
+- **No narration.** No section headers, no restating the next line, no play-by-play of the obvious.
+- **No history.** No "Added …", "Changed for …", "Removed …", authorship or AI-attribution banners. Git is the history.
+- **No commented-out code.** Delete it. Version control remembers everything.
+- **No TODO without a ticket.** A TODO only goes in if it references the issue that tracks it.
+- **Doc comments only at boundaries.** Public APIs and exported types, and only what the signature doesn't already say.
+- **A stale comment is a defect.** If a change invalidates a nearby comment, fix or delete the comment in the same change. A wrong comment is worse than none.
+
+---
+
+## Intent & Decisions
+
+Decisions live in separate documents alongside the repo — not in code comments, not in this file. Keep them lean: stale documentation is worse than none.
+
+- **Record decisions, not activity.** Write a record when a choice is non-obvious, constrains future work, or would otherwise be re-litigated: library choices, data models, trade-offs, "never do X". Don't record what the code or its tests already show.
+- **One decision, one file.** Short ADR-style records (Context, Decision, Consequences) in `docs/decisions/`. Atomic and append-only: never edit an accepted record — supersede it with a new one that references the old.
+- **Scope it.** State which files or areas the decision governs, so agents load only what applies to the code in front of them.
+- **Imperative and verifiable.** Prefer MUST / MUST NOT phrasing, and include a check where possible — a grep, a lint rule, a test — so compliance can be proven, not intended.
+- **Link, don't duplicate.** Reference records by ID from code, PRs, or this file. The same decision lives in exactly one place; copies drift and contradict.
+- **Prune ruthlessly.** When the code a record governs changes, update or supersede the record in the same change. Delete records that no longer change any decision. Review the set periodically for duplicates and contradictions — agents pick arbitrarily between conflicting rules.
+- **No journals.** No meeting notes, status reports, or changelogs in the repo. That's what the issue tracker and commit history are for.
 
 ---
 
